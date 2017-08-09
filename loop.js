@@ -76,12 +76,16 @@
 
     var updateIterations = 0;
     while (delta >= timestep) {
-      update(timestep);
+
+      update(timestep, keyboard.getKeys());
+      keyboard.reset();
+      
       delta -= timestep;
       if (updateIterations++ >= 240) {
         delta = 0;
         break;
       }
+
     }
 
     draw();

@@ -78,8 +78,8 @@
     while (delta >= timestep) {
 
       update(timestep, keyboard.getKeys());
-      keyboard.reset();
-      
+      //keyboard.reset();
+
       delta -= timestep;
       if (updateIterations++ >= 240) {
         delta = 0;

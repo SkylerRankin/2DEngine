@@ -1,9 +1,3 @@
-/*
-
-Captures the keystrokes/mouse presses for a frame, used to pass into the update function in loop.js
-
-*/
-
 (function(state) {
 
   var keys = {
@@ -46,6 +40,20 @@ Captures the keystrokes/mouse presses for a frame, used to pass into the update 
           keys.shift = 1; break;
         case 27:
           keys.esc = 1; break;
+      }
+  });
+
+  window.addEventListener('keyup', function(e) {
+    if (keys.hasOwnProperty(String.fromCharCode(e.keyCode).toLowerCase()))
+      keys[String.fromCharCode(e.keyCode).toLowerCase()] = 0;
+    else
+      switch (e.keyCode) {
+        case 32:
+          keys.space = 0; break;
+        case 16:
+          keys.shift = 0; break;
+        case 27:
+          keys.esc = 0; break;
       }
   });
 

@@ -18,11 +18,11 @@ var animator = (function() {
 
       if (elapsed_frames >= delay) {
         elapsed_frames = 0;
-        ctx.drawImage(sprites[set[currentAnimation][current_frame]], x, y);
-        current_frame++;
+        ctx.drawImage(sprites[set[currentAnimation][current_frame++]], x, y);
         if (current_frame >= set[currentAnimation].length)
           current_frame = 0;
       } else {
+        ctx.drawImage(sprites[set[currentAnimation][current_frame]], x, y); //allow for the current frame to be repeated if there is a frame delay
         elapsed_frames++;
       }
 
@@ -36,6 +36,10 @@ var animator = (function() {
 
       return this;
     } //set the current animation to use
+
+    this.getAnimation = function() {
+      return currentAnimation;
+    }
 
     this.setAnimationSet = function(group) {
       set = group;

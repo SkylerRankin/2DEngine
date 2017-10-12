@@ -52,7 +52,7 @@ Adds the spritesheet object to the global scope with the following functions
   }
 
   state.spritesheet = {
-    getSprites: function(path, width, height, callback) {
+    getSprites: function(path, width, height, callback, self) {
       var img = document.createElement('img');
       img.onload = loaded;
       img.crossOrigin = 'anonymous';
@@ -66,9 +66,8 @@ Adds the spritesheet object to the global scope with the following functions
         ctx.imageSmoothingEnabled = false;
         //Multiply width and height for scaling
         var tiles = splitSheet(img, width, height);
-        callback(tiles);
+        callback(tiles, self);
       }
     }
   };
-  9
 })(this);

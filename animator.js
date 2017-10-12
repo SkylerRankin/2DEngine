@@ -1,8 +1,11 @@
-function animator(path, width, height) {
+function animator(path, width, height, scale) {
 
+  this.width = width;
+  this.height = height;
   this.delay;
   this.elapsed_frames = 0;
   this.set = {};
+  this.scale = scale;
   this.running = false;
   this.sprites = [];
   this.current_frame = 0;
@@ -16,12 +19,12 @@ function animator(path, width, height) {
 
     if (this.elapsed_frames >= this.delay) {
       this.elapsed_frames = 0;
-      ctx.drawImage(this.sprites[this.set[this.currentAnimation][this.current_frame++]], x, y);
+      ctx.drawImage(this.sprites[this.set[this.currentAnimation][this.current_frame++]], x, y, this.width*scale, this.height*scale);
       if (this.current_frame >= this.set[this.currentAnimation].length)
         this.current_frame = 0;
     } else {
       if (this.sprites[this.set[this.currentAnimation][this.current_frame]])
-      ctx.drawImage(this.sprites[this.set[this.currentAnimation][this.current_frame]], x, y); //allow for the current frame to be repeated if there is a frame delay
+      ctx.drawImage(this.sprites[this.set[this.currentAnimation][this.current_frame]], x, y, this.width*scale, this.height*scale); //allow for the current frame to be repeated if there is a frame delay
       this.elapsed_frames++;
     }
 

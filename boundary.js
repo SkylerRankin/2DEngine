@@ -29,7 +29,6 @@ function boundary(url) {
       if (data[i].r < 100 && data[i].g < 100 && data[i].b < 100) path.push(1);
       else path.push(0);
     }
-
     image_loaded = true
   };
 
@@ -40,7 +39,6 @@ function boundary(url) {
   this.collides = function(r) {
     if (r.x < 0 || r.x >= 6000 || r.y < 0 || r.y >= 2000) return false;
     var x0 = Math.floor(r.x), y0 = Math.floor(r.y), x1 = x0+Math.floor(r.width), y1 = y0+Math.floor(r.height);
-    //console.log('x0='+x0+', '+'x1='+x1+', '+'y0='+y0+', '+'y1='+y1+', ');
     for (var i=x0; i<=x1; ++i)
       for (var j=y0; j<=y1; ++j) {
         if (path[j*6000 + i] === 1) return true;
